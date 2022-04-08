@@ -1,13 +1,14 @@
 /*
 ** client.c -- a stream socket client demo
 */
-
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <netdb.h>
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
-#include <netdb.h>
+
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -32,7 +33,8 @@ int main(int argc, char *argv[])
 {
     int sockfd, numbytes;  
     char buf[MAXDATASIZE];
-    struct addrinfo hints, *servinfo, *p;
+    struct addrinfo hints;
+    struct addrinfo *servinfo, *p;
     int rv;
     char s[INET6_ADDRSTRLEN];
 
