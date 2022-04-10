@@ -12,7 +12,7 @@ void *tr_handler(void *socket_desc)
     
     int sock = *(int *)socket_desc;
     int read_size;
-    char *message, client_message[3000];
+    char *message, client_message[30000];
 
    
     message = "Greetings!\n"; // send  messages to the client
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons(8876);
+    server.sin_port = htons(8776);
 
     if (bind(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0) // bind
     {
