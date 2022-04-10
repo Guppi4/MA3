@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons(8883);
+    server.sin_port = htons(8876);
 
     if (bind(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0) // bind
     {
@@ -67,13 +67,13 @@ int main(int argc, char *argv[])
     }
     puts("bind done");
 
-    // Listen
-    listen(socket_desc, 3);
+  
+    listen(socket_desc, 3);  
 
     size= sizeof(struct sockaddr_in);
 
-    // Accept and incoming connection
-    puts("Waiting for  connections...");
+    
+    puts("Waiting for  connections...");// Accept and incoming connection
     size= sizeof(struct sockaddr_in);
     while ((client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t *)&size)))
     {
