@@ -14,7 +14,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <pthread.h>
-#define PORT "3456"  // the port users will be connecting to
+#define PORT "3458"  // the port users will be connecting to
 
 #define BACKLOG 10   // how many pending connections queue will hold
 
@@ -26,23 +26,13 @@ void * socketThread(void *arg)
 {
   ///printf("%s","hgjh");
   int newSocket = *((int *)arg);
-  recv(newSocket , client_message , 2000 , 0);
-
-  // Send message to the client socket 
-  pthread_mutex_lock(&lock);
-  char *message = malloc(sizeof(client_message)+20);
-  strcpy(message,"Hello Client : ");
-  strcat(message,client_message);
-  strcat(message,"\n");
-  strcpy(buffer,"Hello Client : ");
-  free(message);
-  pthread_mutex_unlock(&lock);
+  
   sleep(1);
-  printf("%s",buffer);
-  send(newSocket,buffer,13,0);
-  printf("Exit socketThread \n");
+ // printf("%s",buffer);
+  send(newSocket,"Hello client",13,0);
+  //printf("Exit socketThread \n");
   close(newSocket);
-  pthread_exit(NULL);
+  //pthread_exit(NULL);
 }
 void sigchld_handler(int s)
 {
